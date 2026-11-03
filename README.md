@@ -5,12 +5,16 @@
 <h1 align="center">K-Player</h1>
 
 <p align="center">
-  Lecteur IPTV (Xtream Codes) pour TV <b>LG webOS</b>, en thème « Nuit » et pensé pour la télécommande.
+  Lecteur IPTV (Xtream Codes) pour TV <b>LG webOS</b> et <b>Android TV / Google TV</b>, en thème « Nuit » et pensé pour la télécommande.
 </p>
 
 <p align="center">
   <a href="https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.ipk">
-    <img src="https://img.shields.io/badge/T%C3%A9l%C3%A9charger-K--Player.ipk-D98BA8?style=for-the-badge&labelColor=33172A" alt="Télécharger K-Player" />
+    <img src="https://img.shields.io/badge/LG%20webOS-K--Player.ipk-D98BA8?style=for-the-badge&labelColor=33172A" alt="Télécharger pour LG webOS" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.apk">
+    <img src="https://img.shields.io/badge/Android%20TV-K--Player.apk-D98BA8?style=for-the-badge&labelColor=33172A" alt="Télécharger pour Android TV" />
   </a>
 </p>
 
@@ -20,11 +24,14 @@
 
 ## ⬇️ Télécharger
 
-👉 **[K-Player.ipk (dernière version)](https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.ipk)**
+| TV | Fichier |
+|---|---|
+| 📺 **LG webOS** | 👉 **[K-Player.ipk](https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.ipk)** |
+| 🤖 **Android TV / Google TV** (Chromecast, Shield, Fire TV, box Android…) | 👉 **[K-Player.apk](https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.apk)** |
 
 Toutes les versions sont sur la page [Releases](https://github.com/Khenissi-Mohamed/Kplayer/releases).
 
-## 📺 Installer sur la TV
+## 📺 Installer sur une TV LG (webOS)
 
 1. Sur la TV, active le **mode développeur** : installe l'app *Developer Mode* depuis le LG Content Store et connecte-toi avec un compte LG développeur (gratuit).
 2. Sur le PC, installe **[webOS Dev Manager](https://github.com/webosbrew/dev-manager-desktop/releases)** et ajoute ta TV.
@@ -32,6 +39,15 @@ Toutes les versions sont sur la page [Releases](https://github.com/Khenissi-Moha
 4. Lance **K-Player** depuis le menu de la TV.
 
 > Le mode développeur doit être renouvelé régulièrement depuis l'app *Developer Mode*, sinon les apps installées sont désactivées.
+
+## 🤖 Installer sur Android TV / Google TV
+
+1. Sur la TV, installe l'app **Downloader** (by AFTVnews) depuis le Play Store.
+2. Ouvre Downloader et tape l'adresse : `https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.apk`
+3. Autorise l'installation d'apps inconnues pour Downloader quand la TV le demande, puis installe.
+4. K-Player apparaît dans la liste des apps.
+
+> Bonus Android : dans les **Options** (bouton vert ou Menu), « Ouvrir avec une autre app » lance la vidéo dans **VLC**, **MX Player** ou **Just Player** s'ils sont installés.
 
 ## 📱 Se connecter avec son téléphone
 
@@ -66,7 +82,7 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 | CH+ / CH− | Chaîne suivante / précédente |
 | 0-9 | Aller à une chaîne par son numéro |
 | 🔴 Rouge | Rechercher |
-| 🟢 Vert | Options de lecture |
+| 🟢 Vert (ou Menu sur Android) | Options de lecture |
 | 🟡 Jaune | Ajouter ou retirer des favoris |
 | 🔵 Bleu | Chaîne précédente (direct) / épisode suivant (séries) |
 | Retour | Revenir en arrière |
