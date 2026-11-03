@@ -64,6 +64,7 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 - **Deux affichages au choix** (Réglages → Affichage) :
   - **Classique** : colonnes catégories, liste et aperçu ;
   - **K-Flix** : grand visuel en haut, rangées de vignettes et fiche titre.
+- **Plusieurs serveurs** : bascule en un clic (Réglages → Serveurs, tuile Serveur ou menu K-Flix). Chaque serveur garde ses favoris, reprises et historique, sans mélange.
 - **Accueil** avec horloge, date et raccourcis (Reprendre, Direct, Films, Séries, Favoris, En cours).
 - **Direct** avec programme TV (maintenant / ensuite), zapping ▲▼, mini-guide, saisie du numéro de chaîne et chaîne précédente.
 - **Replay** des chaînes qui ont des archives : choix du jour et du programme, ou d'un programme en cours depuis le début.

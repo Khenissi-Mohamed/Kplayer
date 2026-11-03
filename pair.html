@@ -70,6 +70,8 @@
     <input id="u" autocapitalize="off" autocomplete="username" spellcheck="false" />
     <label for="p">Mot de passe</label>
     <div class="pw"><input id="p" type="password" autocomplete="current-password" /><button type="button" id="eye">Afficher</button></div>
+    <label for="n">Nom du serveur (facultatif)</label>
+    <input id="n" autocomplete="off" spellcheck="false" placeholder="ex. Maison, Sport, Famille…" maxlength="40" />
     </div>
     <div id="osb" style="display:none">
       <label for="o">Clé d’API OpenSubtitles</label>
@@ -77,7 +79,7 @@
     </div>
     <button class="go" id="go">Envoyer à la TV</button>
     <div class="msg" id="msg"></div>
-    <div class="ver">version 4</div>
+    <div class="ver">version 5</div>
   </div>
   <div class="sec">Chiffrement par masque jetable : la clé ne se trouve que dans le QR code (partie après #, jamais envoyée au réseau). Le relais (serveur ntfy public) ne voit que du texte illisible.</div>
 </div>
@@ -111,6 +113,7 @@
       if (!h || !u || !p) { msg('Remplis les trois champs.', 'err'); return; }
       if (!/^https?:\/\//i.test(h)) h = 'http://' + h;
       data = { h: h, u: u, p: p };
+      var nm = $('n').value.trim(); if (nm) data.n = nm.slice(0, 40);
     }
     var bin = unescape(encodeURIComponent('KP1:' + JSON.stringify(data)));
     if (bin.length > key.length) { msg('Informations trop longues.', 'err'); return; }
