@@ -61,15 +61,32 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 
 ## ✨ Fonctions
 
+- **Deux affichages au choix** (Réglages → Affichage) :
+  - **Classique** : colonnes catégories, liste et aperçu ;
+  - **K-Flix** : grand visuel en haut, rangées de vignettes et fiche titre.
 - **Accueil** avec horloge, date et raccourcis (Reprendre, Direct, Films, Séries, Favoris, En cours).
 - **Direct** avec programme TV (maintenant / ensuite), zapping ▲▼, mini-guide, saisie du numéro de chaîne et chaîne précédente.
+- **Replay** des chaînes qui ont des archives : choix du jour et du programme, ou d'un programme en cours depuis le début.
 - **Films et séries** avec fiches, saisons et reprise automatique là où tu t'étais arrêté.
 - **Passer l'intro**, et **épisode suivant** proposé pendant le générique.
-- **Sous-titres, langue audio**, taille des sous-titres, format d'image et vitesse.
+- **Sous-titres français en ligne** (Addic7ed pour les séries, OpenSubtitles avec ta clé gratuite) :
+  - calage automatique sur la piste intégrée ;
+  - « synchro sur une réplique » à la télécommande ;
+  - réglage fin ± 0,25 s ;
+  - réglage mémorisé par film ou par série.
+- **Sous-titres intégrés, langue audio**, taille des sous-titres, format d'image et vitesse.
 - **3 lecteurs** (HLS.js, MPEG-TS, natif TV), avec bascule automatique si un flux ne passe pas.
-- **Recherche, favoris** (bouton jaune) et récents.
+- **Recherche instantanée** avec clavier à l'écran :
+  - résultats dès la 1re lettre, regroupés en chaînes, films et séries ;
+  - fautes de frappe et accents tolérés ;
+  - recherches récentes.
+- **Favoris** (bouton jaune) et récents.
 
-| Direct | Films | Séries |
+| K-Flix | Recherche | Fiche |
+|---|---|---|
+| ![K-Flix](docs/kflix.png) | ![Recherche](docs/recherche.png) | ![Fiche](docs/fiche.png) |
+
+| Direct (classique) | Films (classique) | Séries (classique) |
 |---|---|---|
 | ![Direct](docs/direct.png) | ![Films](docs/films.png) | ![Séries](docs/series.png) |
 
@@ -82,7 +99,8 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 | CH+ / CH− | Chaîne suivante / précédente |
 | 0-9 | Aller à une chaîne par son numéro |
 | 🔴 Rouge | Rechercher |
-| 🟢 Vert (ou Menu sur Android) | Options de lecture |
+| 🟢 Vert (ou Menu sur Android) | Options de lecture (sous-titres, synchro, audio…) · replay sur une chaîne en K-Flix |
+| ▶ sur une chaîne (classique) | Replay de la chaîne |
 | 🟡 Jaune | Ajouter ou retirer des favoris |
 | 🔵 Bleu | Chaîne précédente (direct) / épisode suivant (séries) |
 | Retour | Revenir en arrière |
