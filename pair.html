@@ -34,6 +34,7 @@
   .go:disabled{opacity:.6}
   .msg{margin-top:16px;min-height:22px;font-size:15px;line-height:1.4}
   .msg.ok{color:var(--ok)} .msg.err{color:var(--err)}
+  .ver{margin-top:10px;font-size:12px;color:var(--muted);text-align:right;opacity:.7}
   .sec{font-size:13px;color:var(--muted);line-height:1.45;border-top:1px solid var(--line);padding:14px 22px 18px}
   .done{text-align:center;padding:20px 0}
   .done .big{font-size:56px;color:var(--ok)}
@@ -70,6 +71,7 @@
     <div class="pw"><input id="p" type="password" autocomplete="current-password" /><button type="button" id="eye">Afficher</button></div>
     <button class="go" id="go">Envoyer à la TV</button>
     <div class="msg" id="msg"></div>
+    <div class="ver">version 3</div>
   </div>
   <div class="sec">Chiffrement par masque jetable : la clé ne se trouve que dans le QR code (partie après #, jamais envoyée au réseau). Le relais (serveur ntfy public) ne voit que du texte illisible.</div>
 </div>
@@ -99,17 +101,20 @@
     var body = b64url(c);
     // Essaie chaque relais avec un délai maximum, passe au suivant en cas d'échec
     function tryRelay(i) {
-      if (i >= RELAYS.length) { $('go').disabled = false; msg('Aucun relais joignable. Vérifie la connexion du téléphone et réessaie.', 'err'); return; }
-      msg('Envoi… (relais ' + (i + 1) + '/' + RELAYS.length + ')');
-      var ctl = window.AbortController ? new AbortController() : null, timer = setTimeout(function () { if (ctl) ctl.abort(); }, 8000);
+      if (i >= RELAYS.length) { $('go').disabled = false; msg('Aucun relais joignable (' + fails.join(' ; ') + '). Vérifie la connexion du téléphone et réessaie.', 'err'); return; }
+      msg('Envoi… (relais ' + (i + 1) + '/' + RELAYS.length + ' : ' + RELAYS[i].replace('https://', '') + ')');
+      var done = false, ctl = window.AbortController ? new AbortController() : null;
+      // Délai maximum indépendant d'AbortController (anciens navigateurs)
+      var timer = setTimeout(function () { if (done) return; done = true; if (ctl) ctl.abort(); fails.push(RELAYS[i] + ' : délai dépassé'); tryRelay(i + 1); }, 8000);
       fetch(RELAYS[i] + '/' + q.t, { method: 'POST', body: body, signal: ctl ? ctl.signal : undefined })
-        .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('HTTP ' + r.status); })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); })
         .then(function () {
-          key = null;
-          $('form').innerHTML = '<div class="done"><div class="big">✓</div><p class="sub">Envoyé ! Regarde ta TV : elle se connecte.<br>Tu peux fermer cette page.</p></div>';
+          if (done) return; done = true; clearTimeout(timer); key = null;
+          $('form').innerHTML = '<div class="done"><div class="big">✓</div><p class="sub">Envoyé via ' + RELAYS[i].replace('https://', '') + ' ! Regarde ta TV : elle se connecte.<br>Tu peux fermer cette page.</p></div>';
         })
-        .catch(function () { clearTimeout(timer); tryRelay(i + 1); });
+        .catch(function (e) { if (done) return; done = true; clearTimeout(timer); fails.push(RELAYS[i] + ' : ' + (e && e.message || 'erreur')); tryRelay(i + 1); });
     }
+    var fails = [];
     tryRelay(0);
   };
 })();
