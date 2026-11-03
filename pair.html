@@ -62,16 +62,22 @@
   <circle cx="420" cy="150" r="4" fill="#E8DDD2" opacity=".55"/>
 </svg><h1>K-Player</h1><span class="tag">Connexion TV</span></div></div>
   <div class="body" id="form">
-    <p class="sub">Saisis les informations de ton serveur Xtream : elles seront envoyées chiffrées à ta TV.</p>
+    <p class="sub" id="sub">Saisis les informations de ton serveur Xtream : elles seront envoyées chiffrées à ta TV.</p>
+    <div id="srv">
     <label for="h">Serveur (host:port)</label>
     <input id="h" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="http://mon-serveur.tv:8080" />
     <label for="u">Identifiant</label>
     <input id="u" autocapitalize="off" autocomplete="username" spellcheck="false" />
     <label for="p">Mot de passe</label>
     <div class="pw"><input id="p" type="password" autocomplete="current-password" /><button type="button" id="eye">Afficher</button></div>
+    </div>
+    <div id="osb" style="display:none">
+      <label for="o">Clé d’API OpenSubtitles</label>
+      <input id="o" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="32 caractères" />
+    </div>
     <button class="go" id="go">Envoyer à la TV</button>
     <div class="msg" id="msg"></div>
-    <div class="ver">version 3</div>
+    <div class="ver">version 4</div>
   </div>
   <div class="sec">Chiffrement par masque jetable : la clé ne se trouve que dans le QR code (partie après #, jamais envoyée au réseau). Le relais (serveur ntfy public) ne voit que du texte illisible.</div>
 </div>
@@ -88,12 +94,25 @@
   try { if (q.t && /^[\w-]{8,64}$/.test(q.t) && q.k) key = unb64url(q.k); } catch (e) {}
   if (!key) { $('go').disabled = true; msg('Lien invalide : scanne à nouveau le QR code affiché sur la TV.', 'err'); return; }
   history.replaceState(null, '', location.pathname + '#t=' + q.t + '&k=' + q.k);
+  var osMode = q.m === 'os'; // QR ouvert depuis Réglages → Clé OpenSubtitles
+  if (osMode) {
+    $('srv').style.display = 'none'; $('osb').style.display = 'block';
+    $('sub').innerHTML = 'Colle ta clé d’API <b>OpenSubtitles</b> (compte gratuit sur opensubtitles.com, rubrique « API consumers ») : elle sera envoyée chiffrée à ta TV.';
+  }
   $('eye').onclick = function () { var p = $('p'); p.type = p.type === 'password' ? 'text' : 'password'; this.textContent = p.type === 'password' ? 'Afficher' : 'Masquer'; };
   $('go').onclick = function () {
-    var h = $('h').value.trim(), u = $('u').value.trim(), p = $('p').value;
-    if (!h || !u || !p) { msg('Remplis les trois champs.', 'err'); return; }
-    if (!/^https?:\/\//i.test(h)) h = 'http://' + h;
-    var bin = unescape(encodeURIComponent('KP1:' + JSON.stringify({ h: h, u: u, p: p })));
+    var data;
+    if (osMode) {
+      var o = $('o').value.trim();
+      if (!/^[A-Za-z0-9]{20,64}$/.test(o)) { msg('Clé invalide : copie la clé d’API complète.', 'err'); return; }
+      data = { o: o };
+    } else {
+      var h = $('h').value.trim(), u = $('u').value.trim(), p = $('p').value;
+      if (!h || !u || !p) { msg('Remplis les trois champs.', 'err'); return; }
+      if (!/^https?:\/\//i.test(h)) h = 'http://' + h;
+      data = { h: h, u: u, p: p };
+    }
+    var bin = unescape(encodeURIComponent('KP1:' + JSON.stringify(data)));
     if (bin.length > key.length) { msg('Informations trop longues.', 'err'); return; }
     var c = new Uint8Array(bin.length);
     for (var i = 0; i < bin.length; i++) c[i] = bin.charCodeAt(i) ^ key[i];
