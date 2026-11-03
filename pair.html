@@ -71,11 +71,11 @@
     <button class="go" id="go">Envoyer à la TV</button>
     <div class="msg" id="msg"></div>
   </div>
-  <div class="sec">Chiffrement par masque jetable : la clé ne se trouve que dans le QR code (partie après #, jamais envoyée au réseau). Le relais ntfy.sh ne voit que du texte illisible.</div>
+  <div class="sec">Chiffrement par masque jetable : la clé ne se trouve que dans le QR code (partie après #, jamais envoyée au réseau). Le relais (serveur ntfy public) ne voit que du texte illisible.</div>
 </div>
 <script>
 (function () {
-  var NTFY = 'https://ntfy.sh';
+  var RELAYS = ['https://ntfy.envs.net', 'https://ntfy.mzte.de', 'https://ntfy.sh']; // même liste que la TV
   var $ = function (id) { return document.getElementById(id); };
   var msg = function (t, k) { var m = $('msg'); m.textContent = t; m.className = 'msg ' + (k || ''); };
   var q = {};
@@ -95,14 +95,22 @@
     if (bin.length > key.length) { msg('Informations trop longues.', 'err'); return; }
     var c = new Uint8Array(bin.length);
     for (var i = 0; i < bin.length; i++) c[i] = bin.charCodeAt(i) ^ key[i];
-    $('go').disabled = true; msg('Envoi…');
-    fetch(NTFY + '/' + q.t, { method: 'POST', body: b64url(c) })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); })
-      .then(function () {
-        key = null;
-        $('form').innerHTML = '<div class="done"><div class="big">✓</div><p class="sub">Envoyé ! Regarde ta TV : elle se connecte.<br>Tu peux fermer cette page.</p></div>';
-      })
-      .catch(function (e) { $('go').disabled = false; msg('Échec de l’envoi (' + e.message + '). Réessaie.', 'err'); });
+    $('go').disabled = true;
+    var body = b64url(c);
+    // Essaie chaque relais avec un délai maximum, passe au suivant en cas d'échec
+    function tryRelay(i) {
+      if (i >= RELAYS.length) { $('go').disabled = false; msg('Aucun relais joignable. Vérifie la connexion du téléphone et réessaie.', 'err'); return; }
+      msg('Envoi… (relais ' + (i + 1) + '/' + RELAYS.length + ')');
+      var ctl = window.AbortController ? new AbortController() : null, timer = setTimeout(function () { if (ctl) ctl.abort(); }, 8000);
+      fetch(RELAYS[i] + '/' + q.t, { method: 'POST', body: body, signal: ctl ? ctl.signal : undefined })
+        .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('HTTP ' + r.status); })
+        .then(function () {
+          key = null;
+          $('form').innerHTML = '<div class="done"><div class="big">✓</div><p class="sub">Envoyé ! Regarde ta TV : elle se connecte.<br>Tu peux fermer cette page.</p></div>';
+        })
+        .catch(function () { clearTimeout(timer); tryRelay(i + 1); });
+    }
+    tryRelay(0);
   };
 })();
 </script>
