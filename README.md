@@ -63,13 +63,15 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 
 - **Deux affichages au choix** (Réglages → Affichage) :
   - **Classique** : colonnes catégories, liste et aperçu ;
-  - **K-Flix** : grand visuel en haut, rangées de vignettes et fiche titre.
+  - **K-Flix** : grand visuel en haut, rangées de vignettes, fiche titre ;
+  - « Tout voir » en grille, avec aperçu vidéo pour les chaînes.
 - **Plusieurs serveurs** : bascule en un clic (Réglages → Serveurs, tuile Serveur ou menu K-Flix). Chaque serveur garde ses favoris, reprises et historique, sans mélange.
 - **Accueil** avec horloge, date et raccourcis (Reprendre, Direct, Films, Séries, Favoris, En cours).
 - **Direct** avec programme TV (maintenant / ensuite), zapping ▲▼, mini-guide, saisie du numéro de chaîne et chaîne précédente.
 - **Replay** des chaînes qui ont des archives : choix du jour et du programme, ou d'un programme en cours depuis le début.
 - **Films et séries** avec fiches, saisons et reprise automatique là où tu t'étais arrêté.
-- **Passer l'intro**, et **épisode suivant** proposé pendant le générique.
+- **Passer l'intro** (repérée et apprise par série), et **épisode suivant** proposé pendant le générique.
+- **Son absent** détecté et réparé automatiquement (autre piste, autre lecteur, ou VLC sur Android).
 - **Sous-titres français en ligne** (Addic7ed pour les séries, OpenSubtitles avec ta clé gratuite) :
   - calage automatique sur la piste intégrée ;
   - « synchro sur une réplique » à la télécommande ;
@@ -79,9 +81,10 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 - **3 lecteurs** (HLS.js, MPEG-TS, natif TV), avec bascule automatique si un flux ne passe pas.
 - **Recherche instantanée** avec clavier à l'écran :
   - résultats dès la 1re lettre, regroupés en chaînes, films et séries ;
+  - recherche partout ou seulement dans les films, les séries ou les chaînes ;
   - fautes de frappe et accents tolérés ;
   - recherches récentes.
-- **Favoris** (bouton jaune) et récents.
+- **Favoris** (bouton jaune), avec **plusieurs listes de chaînes** (Sport, Info…), et récents.
 
 | K-Flix | Recherche | Fiche |
 |---|---|---|
