@@ -77,6 +77,7 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 
 **Regarder**
 - **Direct** avec programme TV (maintenant / ensuite), zapping, mini-guide, numéro de chaîne et chaîne précédente.
+- **Guide TV** : grille des programmes chaînes × heures, jusqu'à 7 jours en arrière. Un programme passé se revoit en un clic (OK ou un tap), un programme en cours se regarde en direct ou depuis le début.
 - **Replay** des chaînes qui ont des archives.
 - **Films et séries** avec fiches, saisons et reprise automatique là où tu t'étais arrêté.
 - **Passer l'intro** (repérée et apprise par série) et **épisode suivant** proposé pendant le générique.
