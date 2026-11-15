@@ -5,7 +5,7 @@
 <h1 align="center">K-Player</h1>
 
 <p align="center">
-  Lecteur IPTV (Xtream Codes) pour TV <b>LG webOS</b> et <b>Android TV / Google TV</b>, en thème « Nuit » et pensé pour la télécommande.
+  Lecteur IPTV (Xtream Codes) pour TV <b>LG webOS</b>, <b>Android TV / Google TV</b>, <b>téléphones et tablettes Android</b>, en thème « Nuit ».
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
   </a>
   &nbsp;
   <a href="https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.apk">
-    <img src="https://img.shields.io/badge/Android%20TV-K--Player.apk-D98BA8?style=for-the-badge&labelColor=33172A" alt="Télécharger pour Android TV" />
+    <img src="https://img.shields.io/badge/Android-K--Player.apk-D98BA8?style=for-the-badge&labelColor=33172A" alt="Télécharger pour Android" />
   </a>
 </p>
 
@@ -24,10 +24,13 @@
 
 ## ⬇️ Télécharger
 
-| TV | Fichier |
+| Appareil | Fichier |
 |---|---|
-| 📺 **LG webOS** | 👉 **[K-Player.ipk](https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.ipk)** |
+| 📺 **TV LG (webOS)** | 👉 **[K-Player.ipk](https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.ipk)** |
 | 🤖 **Android TV / Google TV** (Chromecast, Shield, Fire TV, box Android…) | 👉 **[K-Player.apk](https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.apk)** |
+| 📱 **Téléphone ou tablette Android** | 👉 **[K-Player.apk](https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.apk)** (le même fichier) |
+
+Le même APK sert partout : K-Player choisit tout seul l'interface **TV** (télécommande) ou **mobile** (tactile).
 
 Toutes les versions sont sur la page [Releases](https://github.com/Khenissi-Mohamed/Kplayer/releases).
 
@@ -47,11 +50,22 @@ Toutes les versions sont sur la page [Releases](https://github.com/Khenissi-Moha
 3. Autorise l'installation d'apps inconnues pour Downloader quand la TV le demande, puis installe.
 4. K-Player apparaît dans la liste des apps.
 
-> Bonus Android : dans les **Options** (bouton vert ou Menu), « Ouvrir avec une autre app » lance la vidéo dans **VLC**, **MX Player** ou **Just Player** s'ils sont installés.
+> Avant une mise à jour, supprime l'ancien `K-Player.apk` dans l'onglet *Files* de Downloader : sinon il peut réinstaller l'ancien fichier.
 
-## 📱 Se connecter avec son téléphone
+## 📱 Installer sur un téléphone ou une tablette Android
 
-Au premier lancement, un **QR code** s'affiche à côté du formulaire :
+1. Sur le téléphone, ouvre ce lien dans le navigateur : `https://github.com/Khenissi-Mohamed/Kplayer/releases/latest/download/K-Player.apk`
+2. Ouvre le fichier téléchargé et autorise l'installation d'apps inconnues si Android le demande.
+3. Au premier téléchargement d'une vidéo, accepte les notifications : elles affichent la progression.
+
+## 🔑 Se connecter
+
+Deux façons de se connecter, au choix en haut du formulaire :
+
+- **Identifiants** : adresse du serveur, identifiant et mot de passe. Une fois le serveur utilisé sur un appareil, il est retenu : l'identifiant et le mot de passe suffisent ensuite.
+- **Lien complet** : tout sur une ligne, par exemple le lien `get.php?username=…&password=…` donné par ton fournisseur.
+
+Sur TV, un **QR code** permet aussi de tout remplir depuis le téléphone :
 
 1. Scanne-le avec l'appareil photo du téléphone.
 2. Remplis le serveur, l'identifiant et le mot de passe.
@@ -61,30 +75,35 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 
 ## ✨ Fonctions
 
-- **Deux affichages au choix** (Réglages → Affichage) :
-  - **Classique** : colonnes catégories, liste et aperçu ;
-  - **K-Flix** : grand visuel en haut, rangées de vignettes, fiche titre ;
-  - « Tout voir » en grille, avec aperçu vidéo pour les chaînes.
-- **Plusieurs serveurs** : bascule en un clic (Réglages → Serveurs, tuile Serveur ou menu K-Flix). Chaque serveur garde ses favoris, reprises et historique, sans mélange.
-- **Accueil** avec horloge, date et raccourcis (Reprendre, Direct, Films, Séries, Favoris, En cours).
-- **Direct** avec programme TV (maintenant / ensuite), zapping ▲▼, mini-guide, saisie du numéro de chaîne et chaîne précédente.
-- **Replay** des chaînes qui ont des archives : choix du jour et du programme, ou d'un programme en cours depuis le début.
+**Regarder**
+- **Direct** avec programme TV (maintenant / ensuite), zapping, mini-guide, numéro de chaîne et chaîne précédente.
+- **Replay** des chaînes qui ont des archives.
 - **Films et séries** avec fiches, saisons et reprise automatique là où tu t'étais arrêté.
-- **Passer l'intro** (repérée et apprise par série), et **épisode suivant** proposé pendant le générique.
-- **Son absent** détecté et réparé automatiquement (autre piste, autre lecteur, ou VLC sur Android).
-- **Sous-titres français en ligne** (Addic7ed pour les séries, OpenSubtitles avec ta clé gratuite) :
-  - calage automatique sur la piste intégrée ;
-  - « synchro sur une réplique » à la télécommande ;
-  - réglage fin ± 0,25 s ;
-  - réglage mémorisé par film ou par série.
-- **Sous-titres intégrés, langue audio**, taille des sous-titres, format d'image et vitesse.
-- **3 lecteurs** (HLS.js, MPEG-TS, natif TV), avec bascule automatique si un flux ne passe pas.
-- **Recherche instantanée** avec clavier à l'écran :
-  - résultats dès la 1re lettre, regroupés en chaînes, films et séries ;
-  - recherche partout ou seulement dans les films, les séries ou les chaînes ;
-  - fautes de frappe et accents tolérés ;
-  - recherches récentes.
-- **Favoris** (bouton jaune), avec **plusieurs listes de chaînes** (Sport, Info…), et récents.
+- **Passer l'intro** (repérée et apprise par série) et **épisode suivant** proposé pendant le générique.
+
+**Lecture sur Android : tous les formats, tous les sons**
+- Moteur **ExoPlayer** (celui des grandes applis Android TV) avec décodeur de son **FFmpeg** : MKV, MP4, AVI…, Dolby AC3 / E-AC3, DTS, TrueHD.
+- **VLC** intégré en secours, automatiquement, si un fichier ne passe pas.
+- Tout reste dans le lecteur K-Player : rien ne s'ouvre à côté, aucun réglage.
+- Réserve de lecture adaptée aux films 4K et Full HD. Une chaîne qui coupe souvent passe toute seule sur ExoPlayer.
+
+**Téléphones et tablettes**
+- Interface tactile : onglets Accueil, Direct, Films, Séries, Téléchargés ; rangées qui défilent au doigt ; recherche avec le clavier du téléphone.
+- Lecteur en paysage : un tap pour les commandes, double-tap pour −10 s / +10 s.
+
+**Téléchargements hors connexion** (Android)
+- Film, épisode ou saison entière, un fichier à la fois, avec reprise après coupure.
+- Fichiers rangés dans **Films › K-Player** sur le téléphone : ils s'ouvrent aussi avec l'appli Fichiers ou VLC, même sans K-Player.
+- Épisode vu jusqu'au bout : il est supprimé et le suivant se télécharge tout seul.
+- **Sans internet**, K-Player s'ouvre directement sur les téléchargements.
+
+**Interface**
+- Deux affichages sur TV (Réglages → Affichage) : **Classique** (catégories, liste, aperçu) ou **K-Flix** (grand visuel, rangées de vignettes, « Tout voir » en grille avec aperçu des chaînes).
+- **Plusieurs serveurs** : chacun garde ses favoris, reprises et historique.
+- **Recherche instantanée** : dès la 1re lettre, partout ou seulement dans les chaînes, films ou séries ; fautes de frappe et accents tolérés.
+- **Favoris** (bouton jaune) avec plusieurs listes de chaînes (Sport, Info…).
+- **Sous-titres français en ligne** (Addic7ed, OpenSubtitles avec ta clé gratuite), calés automatiquement, avec synchro sur une réplique.
+- **Journal de lecture** (Réglages) : lecteur utilisé, temps avant l'image, coupures et débit du serveur, pour comprendre un souci.
 
 | K-Flix | Recherche | Fiche |
 |---|---|---|
@@ -104,11 +123,10 @@ Les identifiants sont chiffrés sur le téléphone, et la clé n'existe que dans
 | 0-9 | Aller à une chaîne par son numéro |
 | 🔴 Rouge | Rechercher |
 | 🟢 Vert (ou Menu sur Android) | Options de lecture (sous-titres, synchro, audio…) · replay sur une chaîne en K-Flix |
-| ▶ sur une chaîne (classique) | Replay de la chaîne |
 | 🟡 Jaune | Ajouter ou retirer des favoris |
 | 🔵 Bleu | Chaîne précédente (direct) / épisode suivant (séries) |
 | Retour | Revenir en arrière |
 
 ## ℹ️ À savoir
 
-K-Player est **uniquement un lecteur** : il ne fournit aucune chaîne ni aucun contenu. Il faut ton propre abonnement IPTV compatible Xtream Codes.
+K-Player est **uniquement un lecteur** : il ne fournit aucune chaîne ni aucun contenu. Il faut ton propre abonnement IPTV compatible Xtream Codes. L'appli ne contient aucun serveur ni aucun compte : chacun saisit les siens.
